@@ -1,4 +1,4 @@
-export const colourOptions: readonly ColourOption[] = [
+export const gradeList: readonly gradeLists[] = [
   { value: 'Brent', label: 'Brent', isFixed: true },
   { value: 'Dubai', label: 'Dubai', isDisabled: false },
   { value: 'Murban', label: 'Murban',  },

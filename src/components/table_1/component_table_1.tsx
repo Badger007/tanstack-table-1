@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import mockData from './data.json';
+// import mockData from './data.json';
 
 import {
   createColumnHelper,
@@ -42,8 +42,8 @@ const columns = [
   }),
 ];
 
-export default function component_1() {
-  const [data] = React.useState(() => [...mockData]);
+export default function table_1(props) {
+  const [data] = React.useState(() => [...props.mockData]);
   // const [sorting, setSorting] = React.useState<SortingState>([]);
 
   const table = useReactTable({
@@ -54,7 +54,7 @@ export default function component_1() {
     },
     initialState: {
       pagination: {
-        pageSize: mockData.length,
+        pageSize: props.mockData.length,
       },
     },
     getCoreRowModel: getCoreRowModel(),
@@ -64,6 +64,8 @@ export default function component_1() {
   });
 
   return (
+    <div>
+      <div>hello</div>
     <div className="flex flex-col h-dvh max-w-2xl py-10 pl-10"> 
       <table className="border">
         <thead>
@@ -87,6 +89,7 @@ export default function component_1() {
                         // onClick: header.column.getToggleSortingHandler(),
                       }}
                     >
+                      
                       {flexRender(
                         header.column.columnDef.header,
                         header.getContext()
@@ -103,6 +106,7 @@ export default function component_1() {
           ))}
         </thead>
         <tbody>
+          
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id} className="border-b text-center">
               {row.getVisibleCells().map((cell) => (
@@ -116,6 +120,7 @@ export default function component_1() {
       </table>
 
  
+    </div>
     </div>
   );
 }
