@@ -103,12 +103,12 @@ export default function dropdown_list() {
         
       />
       <div>{SelectedDropDownValue}</div>
-      <div
+      {/* <div
         
         style={{
           color: 'hsl(0, 0%, 40%)',
           display: 'inline',
-          fontSize: 12,
+          fontSize: 25,
           width:100,
 
           fontStyle: 'italic',
@@ -148,7 +148,7 @@ export default function dropdown_list() {
         </Checkbox> 
 
         
-      </div>
+      </div> */}
     </>
   );
 };

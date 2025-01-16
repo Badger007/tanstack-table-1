@@ -24,11 +24,11 @@ export default function App() {
       <div>---------------------------------------</div>
       <div>{dropdown_list_with_state_and_export()}</div>
       <div>------------------------------------</div>
-      <div>{dropdown_list_with_state()}</div>
+      {/* <div>{dropdown_list_with_state()}</div>
       <div>------------------------------------</div>
-    <div>{dropdown_list()}</div>
+    <div>{dropdown_list()}</div>*/}
     <div>------------------------------------</div>
-    <div>{component_1()}</div>
+    <div>{component_1()}</div> 
   
     </div>
   )
