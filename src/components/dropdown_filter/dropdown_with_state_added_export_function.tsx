@@ -11,6 +11,12 @@ const Checkbox = ({ children, ...props }: JSX.IntrinsicElements['input']) => (
   </label>
 );
 
+const default_selection = colourOptions[1]
+
+console.log(default_selection)
+
+var hhh = "hhhhhh"
+
 var selected_item = colourOptions[0]
 
 function selected_item_function(e) { 
@@ -21,17 +27,25 @@ function selected_item_function(e) {
 
 
 
+
+
   export function selected_item_function_EXPORT() { 
-    const [selected_drop_down_value, select_dropdown] = useState(colourOptions[2]); 
-  
+    
+    
     // function handleChange(e) { 
     //   setText(e.target.value); 
     // } 
 
+    
+    
+    
+
+    
+
     return ( 
       <> 
       <div>
-
+        
         <h1>hello there my man: </h1> 
 
         </div>
@@ -47,13 +61,35 @@ export default function dropdown_list() {
   const [isLoading, setIsLoading] = useState(false);
   const [isRtl, setIsRtl] = useState(false);
 
+  const [SelectedDropDownValue, setSelectedDropDownValue] = useState(default_selection.value)
+    
+  function handleClick(e) {
+    switch(e.value) {
+      case "Brent": 
+        setSelectedDropDownValue("Brent");
+
+        break;
+      case "Dubai": 
+        setSelectedDropDownValue("Dubai");
+        break;
+      case "Murban": 
+        setSelectedDropDownValue("Murban");
+        break;
+      case "WTI": 
+        setSelectedDropDownValue("WTI");
+        break;
+      default:
+        "hello"
+      
+    }}
+
 
   return (
     <>
       <Select
         className="basic-single"
         classNamePrefix="select"
-        defaultValue={colourOptions[2]}
+        defaultValue={default_selection}
 
         isDisabled={isDisabled}
         isLoading={isLoading}
@@ -63,10 +99,10 @@ export default function dropdown_list() {
         name="color"
         options={colourOptions}
 
-        onChange={selected_item = selected_item_function}
+        onChange={handleClick}
         
       />
-
+      <div>{SelectedDropDownValue}</div>
       <div
         
         style={{
