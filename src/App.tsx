@@ -4,8 +4,12 @@
 
 // import mockData from './data.json';
 
-import component_1 from './component_table_1';
-import dropdown from './components/dropdown_filter/dropdown';
+import component_1 from './components/table_1/component_table_1';
+import dropdown_list from './components/dropdown_filter/dropdown';
+import InputComponent from './components/playground/useState';
+import dropdown_list_with_state from './components/dropdown_filter/dropdown_with_state';
+import dropdown_list_with_state_and_export from './components/dropdown_filter/dropdown_with_state_added_export_function';
+import {selected_item_function_EXPORT} from './components/dropdown_filter/dropdown_with_state_added_export_function';
 
 export default function App() {
 
@@ -14,7 +18,16 @@ export default function App() {
 
     // <div>{dropdown()}</div>
     <div>
-    <div>{dropdown()}</div>
+      <div>{InputComponent()}</div>
+      <div>---------------------------------------</div>
+      <div>{selected_item_function_EXPORT()}</div>
+      <div>---------------------------------------</div>
+      <div>{dropdown_list_with_state_and_export()}</div>
+      <div>------------------------------------</div>
+      <div>{dropdown_list_with_state()}</div>
+      <div>------------------------------------</div>
+    <div>{dropdown_list()}</div>
+    <div>------------------------------------</div>
     <div>{component_1()}</div>
   
     </div>
