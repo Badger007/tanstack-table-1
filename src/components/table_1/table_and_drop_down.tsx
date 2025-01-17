@@ -1,9 +1,10 @@
 
 import table_1 from './component_table_1';
-import dropdown_list_with_state_and_export from '../dropdown_filter/dropdown_with_state_added_export_function';
+import {dropdown_list} from '../dropdown_filter/dropdown_with_state_added_export_function';
 
 import mockData from './data.json';
 
+console.log(dropdown_list)
 
 function Main(mockData) { 
     return table_1(mockData)  
@@ -18,7 +19,7 @@ export default function App() {
 
     // <div>{dropdown()}</div>
     <div>
-      <div>{dropdown_list_with_state_and_export()}</div>
+      <div>{dropdown_list()}</div>
     {/* <div>{component_1()}</div>  */}
     <div>
         <Main mockData={mockData}/>
