@@ -3,7 +3,7 @@ import React, { useState, createContext } from "react";
 import Select from "react-select";
 import { gradeList } from "./data_dropdown";
 
-import { Table_1 } from "../table_1/component_table_1";
+import { Table_2 } from "../table_1/component_table_2";
 
 const default_selection = gradeList[1];
 
@@ -43,7 +43,7 @@ export const Dropdown_list = (props) => {
       />
 
       <div>
-        <Table_1 mockData={NeededDataset} />
+        <Table_2 mockData={NeededDataset} />
       </div>
     </>
   );

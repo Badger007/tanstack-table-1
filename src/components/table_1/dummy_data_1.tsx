@@ -110,8 +110,8 @@ export let dummy_wti = [
   export let dummy_brent = [
     {
       "date": "2099-01-01",
-      "SoD": 70.11,
-      "Const": 0,
+      "SoD": 75.11,
+      "Const": 5.15,
       "Spread": 0.12
     },
     {
