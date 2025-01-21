@@ -1,6 +1,8 @@
 //https://medium.com/@jordammendes/build-powerfull-tables-in-reactjs-with-tanstack-9d57a3a63e35
 
 import * as React from 'react';
+import mockData from './data.json';
+import {table_1} from './component_table_1';
 
 // import mockData from './data.json';
 
@@ -13,6 +15,11 @@ import {
   // SortingState,
   getPaginationRowModel,
 } from '@tanstack/react-table';
+
+function Main(mockData) { 
+    return table_1(mockData)  
+  };
+
 
 type Person = {
   date: String;
@@ -42,12 +49,8 @@ const columns = [
   }),
 ];
 
-export const Table_1 = (props) => {
-  // const [data] = React.useState(() => [...props.mockData]);
-  
-  const [data] = [props.mockData];
-  // console.log(props.mockData[0].date)
-
+export const dropdown = () => {
+  const [data] = React.useState(() => [...mockData]);
   // const [sorting, setSorting] = React.useState<SortingState>([]);
 
   const table = useReactTable({
@@ -58,7 +61,7 @@ export const Table_1 = (props) => {
     },
     initialState: {
       pagination: {
-        pageSize: props.mockData.length,
+        pageSize: mockData.length,
       },
     },
     getCoreRowModel: getCoreRowModel(),
@@ -69,7 +72,12 @@ export const Table_1 = (props) => {
 
   return (
     <div>
-      {/* <div>{data[0].date}</div> */}
+      
+      <div>
+        <Main mockData={mockData}/>
+    </div>
+
+
     <div className="flex flex-col h-dvh max-w-2xl py-10 pl-10"> 
       <table className="border">
         <thead>
@@ -125,6 +133,10 @@ export const Table_1 = (props) => {
 
  
     </div>
+
+    
+
+
     </div>
   );
 }

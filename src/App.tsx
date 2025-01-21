@@ -9,11 +9,22 @@ import dropdown_list_with_state_and_export from './components/dropdown_filter/dr
 
 import table_and_drop_down from './components/table_1/table_and_drop_down';
 
+import {Dropdown_list} from './components/dropdown_filter/component_dropdown_with_table_as_child';
+import mockData_1 from './components/table_1/data.json';
+import mockData_2 from './components/table_1/data_2.json';
+
 export default function App() {
 
   return (
+
     <div>
-    <div>{table_and_drop_down()}</div>  
+      <div>
+      <Dropdown_list mockData_1={mockData_1} mockData_2={mockData_2}/>
+      </div>
+
+
+    {/* <div>{Dropdown_list()}</div>   */}
+    {/* <div>{table_and_drop_down()}</div>   */}
     </div>
   )
   
