@@ -47,7 +47,9 @@ const defaultColumn: Partial<ColumnDef<Crude_Table>> = {
           value={value}
           onChange={handleChange}
           onBlur={onBlur}
-          className={`text-center ${isNumeric ? '' : "text-red-400 dark:text-sky-400 bg-red-50"}`}
+          className={`text-center ${
+            isNumeric ? "" : "text-red-400 dark:text-sky-400 bg-red-50"
+          }`}
         />
       );
     } else {
