@@ -165,6 +165,7 @@ export function Table_2(props) {
               })}
             </tbody>
           </table>
+          
         </div>
       );
     }

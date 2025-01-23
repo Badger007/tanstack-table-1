@@ -7,17 +7,11 @@ import TabPanel from '@mui/lab/TabPanel';
 
 
 
-import {Dropdown_list} from './dropdown_filter/component_dropdown_with_table_as_child.tsx';
-import {dummy_murban, dummy_dubai, dummy_wti, dummy_brent} from './table_1/dummy_data_1.tsx';
-import { Table_1 } from "../table_1/component_table_1.tsx";
-
 import Page_1_table_1 from '../page_1.tsx';
 import Page_1_table_2 from '../page_2.tsx';
 
 
-function wtf ({data}={}) {
-  return "hello " + data
-}
+
 
 export default function LabTabs() {
   const [value, setValue] = React.useState('1');
@@ -36,7 +30,6 @@ export default function LabTabs() {
 
           </TabList>
         </Box>
-        {/* <TabPanel value="1">{wtf({data:"why"})}</TabPanel> */}
         <TabPanel value="1">{Page_1_table_2()}</TabPanel>
         <TabPanel value="2">{Page_1_table_1()}</TabPanel>
 

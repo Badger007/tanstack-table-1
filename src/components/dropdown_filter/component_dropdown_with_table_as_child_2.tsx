@@ -9,6 +9,7 @@ const default_selection = gradeList[1];
 
 export const Dropdown_list = (props) => {
   const [NeededDataset, setNeededDataset] = useState(props.data[1]);
+  const [tableKey, setTableKey] = useState(0); // Add a key state
 
   function handleClick(e) {
     
@@ -29,23 +30,50 @@ export const Dropdown_list = (props) => {
         setNeededDataset(props.data[4]);
         return e.value;
     }
+    setTableKey(prevKey => prevKey + 1); // Increment the key to reset the table
   }
 
-  return (
-    <>
-      <Select
-        className="basic-single"
-        classNamePrefix="select"
-        defaultValue={default_selection}
-        name="color"
-        options={gradeList}
-        onChange={handleClick}
-      />
+//   return (
+//     <>
+//       <Select
+//         className="basic-single"
+//         classNamePrefix="select"
+//         defaultValue={default_selection}
+//         name="color"
+//         options={gradeList}
+//         onChange={handleClick}
+//       />
 
-      <div>
-        {/* <Table_2 mockData={NeededDataset} /> */}
-        <Table_2 mockData={NeededDataset}/>
+//       <div>
+//         {/* <Table_2 mockData={NeededDataset} /> */}
+//         <Table_2 key={tableKey} mockData={NeededDataset} /> {/* Use the key here */}
+//       </div>
+//     </>
+//   );
+// };
+
+
+
+return (
+  <>
+    <Select
+      className="basic-single"
+      classNamePrefix="select"
+      defaultValue={default_selection}
+      name="color"
+      options={gradeList}
+      onChange={handleClick}
+    />
+    <div className="flex justify-between">
+      <div className="flex-grow">
+      <Table_2 key={tableKey} mockData={NeededDataset} />
       </div>
-    </>
-  );
-};
+      <div className="py-10  grid  grid-cols-3 content-between gap-4">
+        <button className="px-8 py-2 bg-blue-500 text-white rounded">
+          Update Values
+        </button>
+      </div>
+    </div>
+  </>
+);
+}
