@@ -1,6 +1,4 @@
 import React from "react";
-
-//
 import {
   ColumnDef,
   useReactTable,
@@ -28,9 +26,16 @@ const defaultColumn: Partial<ColumnDef<Crude_Table>> = {
     if (id === "Const") {
       const initialValue = getValue();
       const [value, setValue] = React.useState(initialValue);
+      const [isNumeric, setIsNumeric] = React.useState(true);
 
       const onBlur = () => {
         table.options.meta?.updateData(index, id, value);
+      };
+
+      const handleChange = (e) => {
+        const newValue = e.target.value;
+        setValue(newValue);
+        setIsNumeric(!isNaN(newValue) && newValue.trim() !== "");
       };
 
       React.useEffect(() => {
@@ -40,9 +45,9 @@ const defaultColumn: Partial<ColumnDef<Crude_Table>> = {
       return (
         <input
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={handleChange}
           onBlur={onBlur}
-          className="text-center"
+          className={`text-center ${isNumeric ? '' : "text-red-400 dark:text-sky-400 bg-red-50"}`}
         />
       );
     } else {
@@ -95,7 +100,6 @@ export function Table_2(props) {
 
   return (
     <div className="flex flex-col h-dvh max-w-4xl py-10 pl-10">
-      {/* <div className="h-2" /> */}
       <table className="border">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
