@@ -11,6 +11,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 )
 
 
+// import {dummy_murban, dummy_dubai, dummy_wti, dummy_brent} from './table_1/dummy_data_1.tsx';
 
 // import React from "react";
 // import ReactDOM from "react-dom/client";
@@ -36,32 +37,46 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 //   }
 // }
 
-// // Give our default column cell renderer editing superpowers!
 // const defaultColumn: Partial<ColumnDef<Person>> = {
+//   // size: 100, // Set a default column width
+//   // minSize: 100, // Set a minimum width for resizing
+//   // maxSize: 300, // Set a maximum width for resizing
 //   cell: ({ getValue, row: { index }, column: { id }, table }) => {
-//     const initialValue = getValue();
-//     // We need to keep and update the state of the cell normally
-//     const [value, setValue] = React.useState(initialValue);
 
-//     // When the input is blurred, we'll call our table meta's updateData function
-//     const onBlur = () => {
-//       table.options.meta?.updateData(index, id, value);
-//     };
+    
+    
+//     if (id === 'firstName' || id === 'age') {
+//       const initialValue = getValue();
+//       const [value, setValue] = React.useState(initialValue);
 
-//     // If the initialValue is changed external, sync it up with our state
-//     React.useEffect(() => {
-//       setValue(initialValue);
-//     }, [initialValue]);
+//       const onBlur = () => {
+//         table.options.meta?.updateData(index, id, value);
+//       };
 
-//     return (
-//       <input
-//         value={value as string}
-//         onChange={(e) => setValue(e.target.value)}
-//         onBlur={onBlur}
-//       />
-//     );
+//       React.useEffect(() => {
+//         setValue(initialValue);
+//       }, [initialValue]);
+
+//       return (
+
+//         <input
+//           value={value}
+//           onChange={e => setValue(e.target.value)}
+//           onBlur={onBlur}
+//         />
+
+//       );
+//     } 
+//     else {
+    
+//     return <span>{getValue()}</span>;
+//     // return    <p>{getValue()}</p>    
+
+//   }
 //   },
+  
 // };
+
 
 // function useSkipper() {
 //   const shouldSkipRef = React.useRef(true);
@@ -80,40 +95,71 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 // }
 
 // function App() {
-//   // const rerender = React.useReducer(() => ({}), {})[1];
+
+//   // const columns = React.useMemo<ColumnDef<Person>[]>(
+//   //   () => [
+//   //     {
+//   //       accessorKey: "firstName",
+//   //     },
+//   //     {
+//   //       accessorKey: "lastName",
+
+//   //     },
+
+//   //     {
+//   //       accessorKey: "age",
+//   //     },
+
+//   //     {
+//   //       accessorKey: "visits",
+//   //     },
+//   //     {
+//   //       accessorKey: "status",
+//   //     },
+//   //     {
+//   //       accessorKey: "progress",
+//   //     },
+//   //   ],
+//   //   []
+//   // );
 
 //   const columns = React.useMemo<ColumnDef<Person>[]>(
 //     () => [
 //       {
 //         accessorKey: "firstName",
+//         size: 20, // Set a specific width for the column
+//         minSize: 400
 //       },
 //       {
 //         accessorKey: "lastName",
+//         size: 150,
 //       },
-
 //       {
 //         accessorKey: "age",
+//         size: 50,
 //       },
-
 //       {
 //         accessorKey: "visits",
+//         size: 500,
+//         minSize: 500
 //       },
 //       {
 //         accessorKey: "status",
+//         size: 150,
 //       },
 //       {
 //         accessorKey: "progress",
+//         size: 150,
 //       },
 //     ],
 //     []
 //   );
 
+
 //   const [data, setData] = React.useState(() => makeData(1000));
 
 //   const [autoResetPageIndex, skipAutoResetPageIndex] = useSkipper();
 
-
-// // console.log(defaultColumn)
 
 //   const table = useReactTable({
 //     data,
@@ -122,26 +168,13 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 //     getCoreRowModel: getCoreRowModel(),
 //     getFilteredRowModel: getFilteredRowModel(),
 //     getPaginationRowModel: getPaginationRowModel(),
-//     autoResetPageIndex,
-//     // Provide our updateData function to our table meta
-//     meta: {
-//       updateData: (rowIndex, columnId, value) => {
-//         // Skip page index reset until after next rerender
-//         skipAutoResetPageIndex();
-//         setData((old) =>
-//           old.map((row, index) => {
-//             if (index === rowIndex) {
-//               return {
-//                 ...old[rowIndex]!,
-//                 [columnId]: value,
-//               };
-//             }
-//             return row;
-//           })
-//         );
+//     initialState: {
+//       pagination: {
+//         pageSize: data.length,
 //       },
 //     },
-//     debugTable: true,
+    
+//     debugTable: false,
 //   });
 
 //   return (
@@ -168,13 +201,13 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 //             </tr>
 //           ))}
 //         </thead>
-//         <tbody>
+//         <tbody >
 //           {table.getRowModel().rows.map((row) => {
 //             return (
-//               <tr key={row.id}>
+//               <tr key={row.id} className="border-b text-center"> 
 //                 {row.getVisibleCells().map((cell) => {
 //                   return (
-//                     <td key={cell.id}>
+//                     <td key={cell.id } >
 //                       {flexRender(
 //                         cell.column.columnDef.cell,
 //                         cell.getContext()

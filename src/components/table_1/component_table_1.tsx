@@ -14,31 +14,34 @@ import {
   getPaginationRowModel,
 } from '@tanstack/react-table';
 
-type Person = {
+type Crude_Table = {
   date: String;
   SoD: number;
   Const: number;
   Spread: number;
 };
 
-const columnHelper = createColumnHelper<Person>();
+const columnHelper = createColumnHelper<Crude_Table>();
 
 const columns = [
   columnHelper.accessor('date', {
     cell: (info) => info.getValue(),
+    size: 200,
   }),
   columnHelper.accessor('SoD', {
     cell: (info) => info.getValue(),
+    size: 200,
     
   }),
   columnHelper.accessor((row) => row.Const, {
     id: 'Const',
-    cell: (info) => <i>{info.getValue()}</i>,
-    header: () => <span>Const</span>,
+    cell: (info) => info.getValue(),
+    size: 200,
   }),
   columnHelper.accessor('Spread', {
     header: () => 'Spread',
-    cell: (info) => info.renderValue(),
+    cell: (info) => info.getValue(),
+    size: 200,
   }),
 ];
 
@@ -53,9 +56,7 @@ export const Table_1 = (props) => {
   const table = useReactTable({
     data,
     columns,
-    state: {
-      // sorting,
-    },
+
     initialState: {
       pagination: {
         pageSize: props.mockData.length,
@@ -68,63 +69,54 @@ export const Table_1 = (props) => {
   });
 
   return (
-    <div>
-      {/* <div>{data[0].date}</div> */}
-    <div className="flex flex-col h-dvh max-w-2xl py-10 pl-10"> 
-      <table className="border">
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr
-              key={headerGroup.id}
-              className="border-b text-gray-800 uppercase"
-              
-            >
-              {headerGroup.headers.map((header) => (
-                <th
-                  key={header.id}
-                  className="px-4 pr-2 py-4 font-medium text-center"
-                >
-                  {header.isPlaceholder ? null : (
-                    <div
-                      {...{
-                        // className: header.column.getCanSort()
-                        //   ? 'cursor-pointer select-none flex min-w-[36px]'
-                        //   : '',
-                        // onClick: header.column.getToggleSortingHandler(),
-                      }}
-                    >
-                      
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
+      <div className="flex flex-col h-dvh max-w-4xl py-10 pl-10">
+        {/* <div className="h-2" /> */}
+        <table className="border">
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}
+              className="border-b text-gray-800">
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <th key={header.id} 
+                    colSpan={header.colSpan}
+                    className="px-4 pr-2 py-4 font-medium text-center">
+                      {header.isPlaceholder ? null : (
+                        <div>
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                        </div>
                       )}
-                      {/* {{
-                        asc: <span className="pl-2">↑</span>,
-                        desc: <span className="pl-2">↓</span>,
-                      }[header.column.getIsSorted() as string] ?? null} */}
-                    </div>
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="border-b text-center">
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="px-0.5 pt-[4px] pb-[4px]">
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
- 
-    </div>
-    </div>
-  );
-}
+                    </th>
+                  );
+                })}
+              </tr>
+            ))}
+          </thead>
+          <tbody >
+            {table.getRowModel().rows.map((row) => {
+              return (
+                <tr key={row.id} className="border-b text-center"> 
+                  {row.getVisibleCells().map((cell) => {
+                    return (
+                      <td key={cell.id } 
+                      style={{ width: cell.column.getSize() }}
+                      className="px-0.5 pt-[4px] pb-[4px]">
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </td>
+                      
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
+  }

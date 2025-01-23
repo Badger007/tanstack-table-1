@@ -43,7 +43,8 @@ export const Dropdown_list = (props) => {
       />
 
       <div>
-        <Table_2 mockData={NeededDataset} />
+        {/* <Table_2 mockData={NeededDataset} /> */}
+        <Table_2 mockData={NeededDataset}/>
       </div>
     </>
   );

@@ -33,13 +33,13 @@ export default function LabTabs() {
           <TabList onChange={handleChange} aria-label="lab API tabs example">
             <Tab label="Forward" value="1" />
             <Tab label="Historical" value="2" />
-            <Tab label="Item Three" value="3" />
+
           </TabList>
         </Box>
         {/* <TabPanel value="1">{wtf({data:"why"})}</TabPanel> */}
         <TabPanel value="1">{Page_1_table_2()}</TabPanel>
         <TabPanel value="2">{Page_1_table_1()}</TabPanel>
-        <TabPanel value="3">Item Three</TabPanel>
+
       </TabContext>
     </Box>
   );
