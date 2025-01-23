@@ -3,7 +3,7 @@ import { useState } from "react";
 import Select from "react-select";
 import { gradeList } from "./data_dropdown";
 
-import { Table_2 } from "../table_1/component_table_2";
+import { Table_2 } from "../tables/component_table_2";
 
 const default_selection = gradeList[1];
 

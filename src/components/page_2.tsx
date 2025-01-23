@@ -1,10 +1,10 @@
-import { Dropdown_list } from "./dropdown_filter/component_dropdown_with_table_as_child_2.tsx";
+import { Dropdown_list } from "./Item_1_of_NavBarSelection/dropdown_filter/component_dropdown_with_table_as_child_2.tsx";
 import {
   dummy_murban,
   dummy_dubai,
   dummy_wti,
   dummy_brent,
-} from "./table_1/dummy_data_1.tsx";
+} from "./data_input/dummy_data_1.tsx";
 
 export default function page_1_table_1() {
   return (
