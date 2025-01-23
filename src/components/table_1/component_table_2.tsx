@@ -5,12 +5,10 @@ import {
   ColumnDef,
   useReactTable,
   getCoreRowModel,
-  // getFilteredRowModel,
   getPaginationRowModel,
   flexRender,
   RowData,
 } from "@tanstack/react-table";
-
 
 declare module "@tanstack/react-table" {
   interface TableMeta<TData extends RowData> {
@@ -25,16 +23,9 @@ type Crude_Table = {
   Spread: number;
 };
 
-
 const defaultColumn: Partial<ColumnDef<Crude_Table>> = {
-  // size: 100, // Set a default column width
-  // minSize: 100, // Set a minimum width for resizing
-  // maxSize: 300, // Set a maximum width for resizing
   cell: ({ getValue, row: { index }, column: { id }, table }) => {
-
-    
-    
-    if (id === 'Const' ) {
+    if (id === "Const") {
       const initialValue = getValue();
       const [value, setValue] = React.useState(initialValue);
 
@@ -47,34 +38,25 @@ const defaultColumn: Partial<ColumnDef<Crude_Table>> = {
       }, [initialValue]);
 
       return (
-
         <input
           value={value}
-          onChange={e => setValue(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
           onBlur={onBlur}
           className="text-center"
         />
-
       );
-    } 
-    else {
-    
-    return <span>{getValue()}</span>;
-    // return    <p>{getValue()}</p>    
-
-  }
+    } else {
+      return <span>{getValue()}</span>;
+    }
   },
-  
 };
 
-
 export function Table_2(props) {
-
   const columns = React.useMemo<ColumnDef<Crude_Table>[]>(
     () => [
       {
         accessorKey: "date",
-        size: 200, // Set a specific width for the column
+        size: 200,
         // minSize: 400
       },
       {
@@ -90,91 +72,78 @@ export function Table_2(props) {
         size: 200,
         // minSize: 500
       },
-
     ],
     []
   );
 
   const [data] = [props.mockData];
- 
 
   const table = useReactTable({
     data,
     columns,
     defaultColumn,
     getCoreRowModel: getCoreRowModel(),
-    // getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     initialState: {
       pagination: {
         pageSize: data.length,
       },
-      
     },
-    
-    
+
     debugTable: false,
   });
 
   return (
-        <div className="flex flex-col h-dvh max-w-4xl py-10 pl-10">
-          {/* <div className="h-2" /> */}
-          <table className="border">
-            <thead>
-              {table.getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id}
-                className="border-b text-gray-800">
-                  {headerGroup.headers.map((header) => {
-                    return (
-                      <th key={header.id} 
-                      colSpan={header.colSpan}
-                      className="px-4 pr-2 py-4 font-medium text-center">
-                        {header.isPlaceholder ? null : (
-                          <div>
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                          </div>
-                        )}
-                      </th>
-                    );
-                  })}
-                </tr>
-              ))}
-            </thead>
-            <tbody >
-              {table.getRowModel().rows.map((row) => {
+    <div className="flex flex-col h-dvh max-w-4xl py-10 pl-10">
+      {/* <div className="h-2" /> */}
+      <table className="border">
+        <thead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id} className="border-b text-gray-800">
+              {headerGroup.headers.map((header) => {
                 return (
-                  <tr key={row.id} className="border-b text-center"> 
-                    {row.getVisibleCells().map((cell) => {
-                      return (
-                        <td key={cell.id } 
-                        style={{ width: cell.column.getSize() }}
-                        className="px-0.5 pt-[4px] pb-[4px]">
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                        </td>
-                        
-                      );
-                    })}
-                  </tr>
+                  <th
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    className="px-4 pr-2 py-4 font-medium text-center"
+                  >
+                    {header.isPlaceholder ? null : (
+                      <div>
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                      </div>
+                    )}
+                  </th>
                 );
               })}
-            </tbody>
-          </table>
-          
-        </div>
-      );
-    }
-
-// const rootElement = document.getElementById("root");
-// if (!rootElement) throw new Error("Failed to find the root element");
-
-// ReactDOM.createRoot(rootElement).render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map((row) => {
+            return (
+              <tr key={row.id} className="border-b text-center">
+                {row.getVisibleCells().map((cell) => {
+                  return (
+                    <td
+                      key={cell.id}
+                      style={{ width: cell.column.getSize() }}
+                      className="px-0.5 pt-[4px] pb-[4px]"
+                    >
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}

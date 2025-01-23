@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import { useState } from "react";
 
 import Select from "react-select";
 import { gradeList } from "./data_dropdown";
@@ -11,7 +11,6 @@ export const Dropdown_list = (props) => {
   const [NeededDataset, setNeededDataset] = useState(props.data[1]);
 
   function handleClick(e) {
-    
     switch (e.value) {
       case "Brent":
         setNeededDataset(props.data[0]);
