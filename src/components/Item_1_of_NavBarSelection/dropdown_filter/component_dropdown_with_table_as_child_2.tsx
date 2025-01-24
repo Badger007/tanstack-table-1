@@ -70,16 +70,16 @@ export const Dropdown_list = (props) => {
         options={gradeList}
         onChange={handleClick}
       />
-      <div className="flex justify-between">
+      <div className="flex h-screen ">
         <div className="flex-grow">
           <Table_2 mockData={tableData} onUpdateData={handleUpdateData} /> {/* Pass the update handler */}
         </div>
-        <div className="py-10 grid grid-cols-3 content-between gap-4">
+        <div className="px-4 py-10     w-1/2 flex items-start justify-start ">
           <button 
             className="px-8 py-2 bg-blue-500 text-white rounded"
             onClick={() => downloadCSV(tableData)} // Use the updated table data
           >
-            Save Data
+            Update Values
           </button>
         </div>
       </div>
