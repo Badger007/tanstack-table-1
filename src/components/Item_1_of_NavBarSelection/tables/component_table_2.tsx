@@ -30,12 +30,18 @@ const defaultColumn: Partial<ColumnDef<Crude_Table>> = {
 
       const onBlur = () => {
         table.options.meta?.updateData(index, id, value);
+        // table.options.meta?.onUpdateData(table.getData()); // Call the update handler
       };
 
       const handleChange = (e) => {
         const newValue = e.target.value;
-        setValue(newValue);
-        setIsNumeric(!isNaN(newValue) && newValue.trim() !== "");
+        const isValidNumber = /^-?\d*\.?\d{0,3}$/.test(newValue); // Regular expression to check for valid numbers with up to three decimal places
+        if (isValidNumber || newValue === "") {
+          setValue(newValue);
+          setIsNumeric(true);
+        } else {
+          setIsNumeric(false);
+        }
       };
 
       React.useEffect(() => {
@@ -58,45 +64,35 @@ const defaultColumn: Partial<ColumnDef<Crude_Table>> = {
   },
 };
 
-export function Table_2(props) {
+export function Table_2({ mockData, onUpdateData }) {
   const columns = React.useMemo<ColumnDef<Crude_Table>[]>(
     () => [
-      {
-        accessorKey: "date",
-        size: 200,
-        // minSize: 400
-      },
-      {
-        accessorKey: "SoD",
-        size: 200,
-      },
-      {
-        accessorKey: "Const",
-        size: 200,
-      },
-      {
-        accessorKey: "Spread",
-        size: 200,
-        // minSize: 500
-      },
+      { accessorKey: "date", size: 200 },
+      { accessorKey: "SoD", size: 200 },
+      { accessorKey: "Const", size: 200 },
+      { accessorKey: "Spread", size: 200 },
     ],
     []
   );
 
-  const [data] = [props.mockData];
-
   const table = useReactTable({
-    data,
+    data: mockData,
     columns,
     defaultColumn,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     initialState: {
       pagination: {
-        pageSize: data.length,
+        pageSize: mockData.length,
       },
     },
-
+    meta: {
+      updateData: (rowIndex, columnId, value) => {
+        const updatedData = [...mockData];
+        updatedData[rowIndex][columnId] = value;
+        onUpdateData(updatedData); // Update the parent component's state
+      },
+    },
     debugTable: false,
   });
 
@@ -106,48 +102,39 @@ export function Table_2(props) {
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id} className="border-b text-gray-800">
-              {headerGroup.headers.map((header) => {
-                return (
-                  <th
-                    key={header.id}
-                    colSpan={header.colSpan}
-                    className="px-4 pr-2 py-4 font-medium text-center"
-                  >
-                    {header.isPlaceholder ? null : (
-                      <div>
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                      </div>
-                    )}
-                  </th>
-                );
-              })}
+              {headerGroup.headers.map((header) => (
+                <th
+                  key={header.id}
+                  colSpan={header.colSpan}
+                  className="px-4 pr-2 py-4 font-medium text-center"
+                >
+                  {header.isPlaceholder ? null : (
+                    <div>
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                    </div>
+                  )}
+                </th>
+              ))}
             </tr>
           ))}
         </thead>
         <tbody>
-          {table.getRowModel().rows.map((row) => {
-            return (
-              <tr key={row.id} className="border-b text-center">
-                {row.getVisibleCells().map((cell) => {
-                  return (
-                    <td
-                      key={cell.id}
-                      style={{ width: cell.column.getSize() }}
-                      className="px-0.5 pt-[4px] pb-[4px]"
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
+          {table.getRowModel().rows.map((row) => (
+            <tr key={row.id} className="border-b text-center">
+              {row.getVisibleCells().map((cell) => (
+                <td
+                  key={cell.id}
+                  style={{ width: cell.column.getSize() }}
+                  className="px-0.5 pt-[4px] pb-[4px]"
+                >
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
