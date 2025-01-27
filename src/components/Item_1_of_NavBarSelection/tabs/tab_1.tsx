@@ -4,8 +4,8 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import Page_1_table_1 from "../../page_1.tsx";
-import Page_1_table_2 from "../../page_2.tsx";
+import Page_1_table_1 from "../page_1.tsx";
+import Page_1_table_2 from "../page_2.tsx";
 
 export default function LabTabs() {
   const [value, setValue] = React.useState("1");

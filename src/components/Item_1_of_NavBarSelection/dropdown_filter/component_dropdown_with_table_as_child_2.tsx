@@ -74,7 +74,7 @@ export const Dropdown_list = (props) => {
         <div className="flex-grow">
           <Table_2 mockData={tableData} onUpdateData={handleUpdateData} /> {/* Pass the update handler */}
         </div>
-        <div className="px-4 py-10 w-1/2 flex items-start justify-start ">
+        <div className="px-4 py-10 w-1/3 flex items-start justify-start ">
           <button 
             className="px-8 py-2 bg-blue-500 text-white rounded"
             onClick={() => downloadCSV(tableData)} // Use the updated table data

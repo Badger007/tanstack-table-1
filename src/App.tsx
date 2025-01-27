@@ -1,3 +1,5 @@
+import Box from "@mui/material/Box";
+
 import dropdown_list_with_state_and_export from './components/Item_1_of_NavBarSelection/dropdown_filter/dropdown_with_state_added_export_function.ts';
 
 import table_and_drop_down from './components/Item_1_of_NavBarSelection/tables/table_and_drop_down.ts';
@@ -9,21 +11,20 @@ import {dummy_murban, dummy_dubai, dummy_wti, dummy_brent} from './components/da
 
 import Tab_component from './components/Item_1_of_NavBarSelection/tabs/tab_1.tsx'
 
-import Page_1_table_1 from './components/page_1.tsx';
+import Page_1_table_1 from './components/Item_1_of_NavBarSelection/page_1.tsx';
 
-
+import Nav_bar from './components/nav_bar.tsx'
 
 export default function App() {
 
   return (
+    
+    <Box sx={{ display: 'flex', width: '100%', typography: 'body1' }}>
+      <Nav_bar />
+      <Tab_component />
 
-    <div>
-      <div><Tab_component /> </div>
-      
-      {/* <div>
-        <Page_1_table_1 />
-      </div> */}
-    </div>
+
+  </Box>
   )
   
   }
