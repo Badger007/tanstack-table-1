@@ -17,13 +17,13 @@ declare module "@tanstack/react-table" {
 type Crude_Table = {
   date: String;
   SoD: number;
-  Const: number;
+  Current: number;
   Spread: number;
 };
 
 const defaultColumn: Partial<ColumnDef<Crude_Table>> = {
   cell: ({ getValue, row: { index }, column: { id }, table }) => {
-    if (id === "Const") {
+    if (id === "Current") {
       const initialValue = getValue();
       const [value, setValue] = React.useState(initialValue);
       const [isNumeric, setIsNumeric] = React.useState(true);
@@ -69,7 +69,7 @@ export function Table_2({ mockData, onUpdateData }) {
     () => [
       { accessorKey: "date", size: 200 },
       { accessorKey: "SoD", size: 200 },
-      { accessorKey: "Const", size: 200 },
+      { accessorKey: "Current", size: 200 },
       { accessorKey: "Spread", size: 200 },
     ],
     []

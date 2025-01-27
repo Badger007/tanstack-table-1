@@ -1,6 +1,10 @@
 import React from 'react';
 import { AppBar, Tabs, Tab, Box } from '@mui/material';
 
+import Tab_component_1 from './tab_1.tsx'
+import Tab_component_2 from '../Item_2_of_NavBarSelection/tab_2.tsx'
+
+
 const NavigationBar = () => {
   const [value, setValue] = React.useState(0);
 
@@ -26,8 +30,8 @@ const NavigationBar = () => {
         </Tabs>
       </AppBar>
       <Box sx={{ padding: 2 }}>
-        {value === 0 && <div>Content for Tab 1</div>}
-        {value === 1 && <div>Content for Tab 2</div>}
+        {value === 0 && <div><Tab_component_1 /></div>}
+        {value === 1 && <div><Tab_component_2 /></div>}
         {value === 2 && <div>Content for Tab 3</div>}
         {value === 3 && <div>Content for Tab 4</div>}
       </Box>

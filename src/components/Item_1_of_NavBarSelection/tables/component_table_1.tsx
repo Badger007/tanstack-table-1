@@ -9,7 +9,7 @@ import {
 type Crude_Table = {
   date: String;
   SoD: number;
-  Const: number;
+  Current: number;
   Spread: number;
 };
 
@@ -24,8 +24,8 @@ const columns = [
     cell: (info) => info.getValue(),
     size: 200,
   }),
-  columnHelper.accessor((row) => row.Const, {
-    id: "Const",
+  columnHelper.accessor((row) => row.Current, {
+    id: "Current",
     cell: (info) => info.getValue(),
     size: 200,
   }),

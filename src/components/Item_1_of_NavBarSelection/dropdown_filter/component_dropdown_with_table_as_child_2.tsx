@@ -2,6 +2,7 @@ import { useState } from "react";
 import Select from "react-select";
 import { gradeList } from "./data_dropdown";
 import { Table_2 } from "../tables/component_table_2";
+import {downloadCSV} from "../../helpers/functions.tsx"
 
 const default_selection = gradeList[1];
 
@@ -36,29 +37,29 @@ export const Dropdown_list = (props) => {
     setTableData(newData); // Update the table data state when changes are made
   };
 
-  const downloadCSV = (data) => {
-    const csvRows = [];
-    const headers = Object.keys(data[0]);
-    csvRows.push(headers.join(',')); // Add header row
+// const downloadCSV = (data) => {
+//   const csvRows = [];
+//   const headers = Object.keys(data[0]);
+//   csvRows.push(headers.join(',')); // Add headers
 
-    for (const row of data) {
-      const values = headers.map(header => {
-        const escaped = ('' + row[header]).replace(/"/g, '\\"'); // Escape double quotes
-        return `"${escaped}"`; // Wrap in double quotes
-      });
-      csvRows.push(values.join(',')); // Add data rows
-    }
+//   for (const row of data) {
+//     const values = headers.map(header => {
+//       const escaped = ('' + row[header]).replace(/"/g, '\\"'); // Escape double quotes
+//       return `"${escaped}"`; // Wrap in quotes
+//     });
+//     csvRows.push(values.join(',')); // Add row values
+//   }
 
-    const csvString = csvRows.join('\n');
-    const blob = new Blob([csvString], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    
-    const a = document.createElement('a');
-    a.setAttribute('href', url);
-    a.setAttribute('download', 'table_data.csv');
-    a.click();
-    URL.revokeObjectURL(url); // Clean up
-  };
+//   const csvString = csvRows.join('\n');
+//   const blob = new Blob([csvString], { type: 'text/csv' });
+//   const url = URL.createObjectURL(blob);
+//   const a = document.createElement('a');
+//   a.setAttribute('href', url);
+//   a.setAttribute('download', 'brent_f2b_spreads.csv');
+//   a.click();
+//   URL.revokeObjectURL(url); // Clean up
+// };
+
 
   return (
     <>
