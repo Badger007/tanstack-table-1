@@ -58,14 +58,6 @@ export function Table_template (tableData, table_name) {
                 ))}
               </tbody>
             </table>
-            {/* <div className="py-5">
-              <button
-                className="px-8 py-2 bg-blue-500 text-white rounded w-50"
-                onClick={() => downloadCSV(brentData, "brent spreads")}
-              >
-                Save as CSV
-              </button>
-            </div> */}
           </div>
         </div>
       );

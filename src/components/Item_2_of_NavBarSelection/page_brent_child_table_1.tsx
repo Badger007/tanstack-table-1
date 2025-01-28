@@ -18,6 +18,14 @@ const MyTables = () => {
     }))
   );
 
+  const handleInputChange = (index, newValue) => {
+    setBrentData((prevData) =>
+      prevData.map((item, idx) =>
+        idx === index ? { ...item, current: newValue } : item
+      )
+    );
+  };
+
   const columnsBrent = [
     { accessorKey: "spread", header: "Spread" },
     { accessorKey: "eod", header: "EOD" },
@@ -25,22 +33,17 @@ const MyTables = () => {
       accessorKey: "current",
       header: "Current",
       cell: ({ row, getValue }) => {
-        const [currentValue, setCurrentValue] = useState(getValue());
+        const handleChange = (e) => {
+          const newValue = e.target.value;
+          handleInputChange(row.index, newValue);
+        };
+
         return (
           <input
             type="number"
             step="0.01"
-            value={currentValue}
-            onChange={(e) => {
-              const newValue = e.target.value;
-              setCurrentValue(newValue);
-              // Update the brentData state with the new value
-              setBrentData((prevData) =>
-                prevData.map((item, idx) =>
-                  idx === row.index ? { ...item, current: newValue } : item
-                )
-              );
-            }}
+            defaultValue={getValue()}
+            onChange={handleChange}
             style={{ width: "60%", textAlign: "center" }}
           />
         );
