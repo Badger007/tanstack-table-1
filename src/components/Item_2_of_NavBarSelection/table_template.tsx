@@ -4,7 +4,7 @@ import {
     flexRender,
   } from "@tanstack/react-table";
 
-export function Table_template (brentTable, table_name) {
+export function Table_template (tableData, table_name) {
     return (
         <div
           style={{
@@ -13,7 +13,7 @@ export function Table_template (brentTable, table_name) {
             padding: "10px",
           }}
         >
-          <div style={{ flex: 1, paddingRight: "20px" }}>
+          <div >
             <h2 className="font-medium text-center">{table_name}</h2>
             <table
               className="border"
@@ -25,7 +25,7 @@ export function Table_template (brentTable, table_name) {
               }}
             >
               <thead>
-                {brentTable.getHeaderGroups().map((headerGroup) => (
+                {tableData.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id} className="border-b text-gray-800">
                     {headerGroup.headers.map((header) => (
                       <th
@@ -47,7 +47,7 @@ export function Table_template (brentTable, table_name) {
                 ))}
               </thead>
               <tbody>
-                {brentTable.getRowModel().rows.map((row) => (
+                {tableData.getRowModel().rows.map((row) => (
                   <tr key={row.id} className="border-b text-center">
                     {row.getVisibleCells().map((cell) => (
                       <td key={cell.id} style={{ padding: "8px" }}>
