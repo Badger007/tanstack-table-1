@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import {downloadCSV} from "../helpers/functions.tsx"
+import Table_1 from "./page_brent_child_table_1.tsx"
 
+
+// import { Dropdown_list } from "../Item_1_of_NavBarSelection/dropdown_filter/component_dropdown_with_table_as_child_2.tsx";
+// import {
+//   dummy_murban,
+//   dummy_dubai,
+//   dummy_wti,
+//   dummy_brent,
+// } from "../data_input/dummy_data_1.tsx";
 
 import {
   ColumnDef,
@@ -9,12 +18,12 @@ import {
   flexRender,
 } from '@tanstack/react-table';
 
-const brentData = Array.from({ length: 10 }, (_, index) => ({
-  spread: `Spread ${index + 1}`,
-  eod: (Math.random() * 100).toFixed(2),
-  current: (Math.random() * 100).toFixed(2),
-  change: (Math.random() * 10).toFixed(2),
-}));
+// const brentData = Array.from({ length: 10 }, (_, index) => ({
+//   spread: `Spread ${index + 1}`,
+//   eod: (Math.random() * 100).toFixed(2),
+//   current: (Math.random() * 100).toFixed(2),
+//   change: (Math.random() * 10).toFixed(2),
+// }));
 
 const datedData = Array.from({ length: 7 }, (_, index) => ({
   week: `Week ${index + 1}`,
@@ -30,35 +39,35 @@ const etfData = Array.from({ length: 3 }, (_, index) => ({
   change: (Math.random() * 10).toFixed(2),
 }));
 
-const columnsBrent = [
-  { accessorKey: 'spread', header: 'Spread' },
-  { accessorKey: 'eod', header: 'EOD' },
-  {
-    accessorKey: 'current',
-    header: 'Current',
-    cell: ({ row }) => {
-      const [currentValue, setCurrentValue] = useState(row.getValue('current'));
-      return (
-        <input
-          type="number"
-          step="0.01"
-          value={currentValue}
-          onChange={(e) => {
-            const newValue = e.target.value;
-            setCurrentValue(newValue);
-            row.getTable().setData((oldData) => {
-              const newData = [...oldData];
-              newData[row.index].current = newValue; // Update the current value
-              return newData;
-            });
-          }}
-          style={{ width: '60%', textAlign: 'center' }} // Adjusted width to 50%
-        />
-      );
-    },
-  },
-  { accessorKey: 'change', header: 'Change' },
-];
+// const columnsBrent = [
+//   { accessorKey: 'spread', header: 'Spread' },
+//   { accessorKey: 'eod', header: 'EOD' },
+//   {
+//     accessorKey: 'current',
+//     header: 'Current',
+//     cell: ({ row }) => {
+//       const [currentValue, setCurrentValue] = useState(row.getValue('current'));
+//       return (
+//         <input
+//           type="number"
+//           step="0.01"
+//           value={currentValue}
+//           onChange={(e) => {
+//             const newValue = e.target.value;
+//             setCurrentValue(newValue);
+//             row.getTable().setData((oldData) => {
+//               const newData = [...oldData];
+//               newData[row.index].current = newValue; // Update the current value
+//               return newData;
+//             });
+//           }}
+//           style={{ width: '60%', textAlign: 'center' }} // Adjusted width to 50%
+//         />
+//       );
+//     },
+//   },
+//   { accessorKey: 'change', header: 'Change' },
+// ];
 
 const columnsDated = [
   { accessorKey: 'week', header: 'Week' },
@@ -121,11 +130,11 @@ const columnsEtf = [
 ];
 
 const MyTables = () => {
-  const brentTable = useReactTable({
-    data: brentData,
-    columns: columnsBrent,
-    getCoreRowModel: getCoreRowModel(),
-  });
+  // const brentTable = useReactTable({
+  //   data: brentData,
+  //   columns: columnsBrent,
+  //   getCoreRowModel: getCoreRowModel(),
+  // });
 
   const datedTable = useReactTable({
     data: datedData,
@@ -143,43 +152,7 @@ const MyTables = () => {
     <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px' }}>
       {/* Left Side: Brent F2B Spreads Table */}
       <div style={{ flex: 1, paddingRight: '20px' }}>
-        <h2 className="font-medium text-center">Brent F2B Spreads</h2>
-        <table className="border" style={{ borderCollapse: 'collapse', width: '100%', maxWidth: '600px', tableLayout: 'auto' }}>
-          <thead>
-            {brentTable.getHeaderGroups().map(headerGroup => (
-              <tr key={headerGroup.id} className="border-b text-gray-800">
-                {headerGroup.headers.map(header => (
-                  <th key={header.id} colSpan={header.colSpan} className="px-4 pr-2 py-4 font-medium text-center">
-                    {header.isPlaceholder ? null : (
-                      <div>
-                        {flexRender(header.column.columnDef.header, header.getContext())}
-                      </div>
-                    )}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {brentTable.getRowModel().rows.map(row => (
-              <tr key={row.id} className="border-b text-center">
-                {row.getVisibleCells().map(cell => (
-                  <td key={cell.id} style={{ padding: '8px' }}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="py-5">
-          <button 
-            className="px-8 py-2 bg-blue-500 text-white rounded w-50"
-            onClick={() => downloadCSV(brentData, "brent spreads")} // Use the updated table data
-          >
-            Update Values
-          </button>
-        </div>
+        <Table_1 />
       </div>
 
       {/* Right Side: Dated and ETF Tables */}

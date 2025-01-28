@@ -14,19 +14,19 @@ declare module "@tanstack/react-table" {
   }
 }
 
-type Crude_Table = {
-  date: String;
-  SoD: number;
-  Current: number;
-  Spread: number;
-};
+// type Crude_Table = {
+//   date: String;
+//   SoD: number;
+//   Current: number;
+//   Spread: number;
+// };
 
 const defaultColumn: Partial<ColumnDef<Crude_Table>> = {
   cell: ({ getValue, row: { index }, column: { id }, table }) => {
     if (id === "Current") {
       const initialValue = getValue();
       const [value, setValue] = React.useState(initialValue);
-      const [isNumeric, setIsNumeric] = React.useState(true);
+      // const [isNumeric, setIsNumeric] = React.useState(true);
 
       const onBlur = () => {
         table.options.meta?.updateData(index, id, value);
@@ -35,13 +35,7 @@ const defaultColumn: Partial<ColumnDef<Crude_Table>> = {
 
       const handleChange = (e) => {
         const newValue = e.target.value;
-        const isValidNumber = /^-?\d*\.?\d{0,3}$/.test(newValue); // Regular expression to check for valid numbers with up to three decimal places
-        if (isValidNumber || newValue === "") {
-          setValue(newValue);
-          setIsNumeric(true);
-        } else {
-          setIsNumeric(false);
-        }
+        setValue(newValue);
       };
 
       React.useEffect(() => {
@@ -53,9 +47,9 @@ const defaultColumn: Partial<ColumnDef<Crude_Table>> = {
           value={value}
           onChange={handleChange}
           onBlur={onBlur}
-          className={`text-center ${
-            isNumeric ? "" : "text-red-400 dark:text-sky-400 bg-red-50"
-          }`}
+          type="number"
+          step="0.01"
+          className={`text-center `}
         />
       );
     } else {
