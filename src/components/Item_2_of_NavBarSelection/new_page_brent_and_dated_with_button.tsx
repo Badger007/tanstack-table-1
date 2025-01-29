@@ -50,14 +50,16 @@ export function Two_tables_dated_and_etf_and_button() {
     <div>
       <Table_brent_dated tableData={tableData_DATED} onUpdateData={handleUpdateData_DATED} />
       <Table_brent_etf tableData={tableData_ETF} onUpdateData={handleUpdateData_ETF} />
+      <div >
       <button
-        className="px-8 py-2 bg-blue-500 text-white rounded"
+        className="px-8 py-2 bg-blue-500 text-white rounded "
         onClick={() => {downloadCSV(tableData_DATED,"dated");
             downloadCSV(tableData_ETF,"etf")
         }}
       >
         Update Values
       </button>
+      </div>
     </div>
   );
 }

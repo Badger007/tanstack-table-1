@@ -9,7 +9,7 @@ import {
 export function Table_template_2({ mockData, onUpdateData,columns , table, table_name}) {
 
   return (
-    <div className="flex flex-col h-dvh max-w-4xl py-10 ">
+    <div className=" flex-col h-dvh max-w-6xl py-4 ">
         <h2 className="font-medium text-center">{table_name}</h2>
       <table className="border">
         <thead>
