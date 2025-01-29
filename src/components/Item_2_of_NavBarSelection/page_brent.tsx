@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {Table_brent_spreads_with_button} from "./page_brent_new.tsx"
 import Table_spreads from "./page_brent_child_table_1.tsx"
 import Tables_dated_and_etf from "./page_brent_child_table_2.tsx"
-import {Table_brent_dated} from "./Table_brent_spreads_with_button_new.tsx"
+import {Table_brent_dated} from "./Table_brent_dated.tsx"
 import {Two_tables_dated_and_etf_and_button} from "./new_page_brent_and_dated_with_button.tsx"
 
 const MyTables = () => {
@@ -22,9 +22,7 @@ const MyTables = () => {
         <div>
           <Two_tables_dated_and_etf_and_button />
         </div>
-        <div >
-          <Tables_dated_and_etf />
-        </div>
+
         </div>
     </div>
 
