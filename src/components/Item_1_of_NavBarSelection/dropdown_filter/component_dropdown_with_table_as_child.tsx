@@ -40,10 +40,16 @@ export const Dropdown_list = (props) => {
         options={gradeList}
         onChange={handleClick}
       />
+      
+      <div className="flex h-screen ">
+              <div className="flex-grow">
+                <Table_1 mockData={NeededDataset} /> {/* Pass the update handler */}
+              </div></div>
 
-      <div>
+
+      {/* <div>
         <Table_1 mockData={NeededDataset} />
-      </div>
+      </div> */}
     </>
   );
 };
