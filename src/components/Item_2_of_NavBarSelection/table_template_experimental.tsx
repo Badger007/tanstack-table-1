@@ -1,94 +1,16 @@
-import React from "react";
+
 import {
-  ColumnDef,
-  useReactTable,
-  getCoreRowModel,
-  getPaginationRowModel,
+
   flexRender,
-  RowData,
+
 } from "@tanstack/react-table";
 
-// declare module "@tanstack/react-table" {
-//   interface TableMeta<TData extends RowData> {
-//     updateData: (rowIndex: number, columnId: string, value: unknown) => void;
-//   }
-// }
 
-// type Crude_Table = {
-//   date: String;
-//   SoD: number;
-//   Current: number;
-//   Spread: number;
-// };
-
-const defaultColumn: Partial<ColumnDef<any>> = {
-  cell: ({ getValue, row: { index }, column: { id }, table }) => {
-    if (id === "Current") {
-      const initialValue = getValue();
-      const [value, setValue] = React.useState(initialValue);
-      const onBlur = () => {
-        table.options.meta?.updateData(index, id, value);
-      };
-
-      const handleChange = (e) => {
-        const newValue = e.target.value;
-        setValue(newValue);
-      };
-
-      React.useEffect(() => {
-        setValue(initialValue);
-      }, [initialValue]);
-
-      return (
-        <input
-          value={value}
-          onChange={handleChange}
-          onBlur={onBlur}
-          type="number"
-          step="0.01"
-          className="text-center"
-        />
-      );
-    } else {
-      return <span>{getValue()}</span>;
-    }
-  },
-};
-
-export function Table_2({ mockData, onUpdateData }) {
-  const columns = React.useMemo<ColumnDef<any>[]>(
-    () => [
-      { accessorKey: "date", size: 200 },
-      { accessorKey: "SoD", size: 200 },
-      { accessorKey: "Current", size: 200 },
-      { accessorKey: "Spread", size: 200 },
-    ],
-    []
-  );
-
-  const table = useReactTable({
-    data: mockData,
-    columns,
-    defaultColumn,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    initialState: {
-      pagination: {
-        pageSize: mockData.length,
-      },
-    },
-    meta: {
-      updateData: (rowIndex, columnId, value) => {
-        const updatedData = [...mockData];
-        updatedData[rowIndex][columnId] = value;
-        onUpdateData(updatedData); // Update the parent component's state
-      },
-    },
-    debugTable: false,
-  });
+export function Table_template_2({ mockData, onUpdateData,columns , table, table_name}) {
 
   return (
-    <div className="flex flex-col h-dvh max-w-4xl py-10 pl-10">
+    <div className="flex flex-col h-dvh max-w-4xl py-10 ">
+        <h2 className="font-medium text-center">{table_name}</h2>
       <table className="border">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
