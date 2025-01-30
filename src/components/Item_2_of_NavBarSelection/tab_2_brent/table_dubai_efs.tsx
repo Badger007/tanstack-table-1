@@ -68,8 +68,8 @@ export const Table_dubai_efs_with_button = () => {
 
 const columns = React.useMemo<ColumnDef<any>[]>(
     () => [
-      { accessorKey: "month", size: 200 },
-      { accessorKey: "value", size: 200 },
+      { accessorKey: "month", size: 180 },
+      { accessorKey: "value", size: 180 },
     //   { accessorKey: "current", size: 100 },
     //   { accessorKey: "change", size: 100 },
     ],

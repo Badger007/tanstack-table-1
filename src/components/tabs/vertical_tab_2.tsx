@@ -6,8 +6,8 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
 
-import Brent_page_tables from "./tab_1_brent/page_brent"
-import Dubai_page_tables from "./tab_2_brent/main_page"
+import Brent_page_tables from "../Item_2_of_NavBarSelection/tab_1_brent/page_brent"
+import Dubai_page_tables from "../Item_2_of_NavBarSelection/tab_2_brent/main_page"
 
 
 export default function LabTabs() {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { AppBar, Tabs, Tab, Box } from '@mui/material';
 
-import Tab_component_1 from './tab_1.tsx'
-import Tab_component_2 from '../Item_2_of_NavBarSelection/tab_2.tsx'
+import Tab_component_1 from './vertical_tab_1.tsx'
+import Tab_component_2 from './vertical_tab_2.tsx'
 
 
 const NavigationBar = () => {

@@ -68,8 +68,8 @@ export const Table_dubai_f2b_spreads_with_button = () => {
 
 const columns = React.useMemo<ColumnDef<any>[]>(
     () => [
-      { accessorKey: "spread", size: 200 },
-      { accessorKey: "SoD", size: 200 },
+      { accessorKey: "spread", size: 100 },
+      { accessorKey: "SoD", size: 100 },
       { accessorKey: "current", size: 100 },
       { accessorKey: "change", size: 100 },
     ],
