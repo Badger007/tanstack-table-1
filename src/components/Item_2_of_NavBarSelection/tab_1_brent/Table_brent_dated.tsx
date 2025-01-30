@@ -123,7 +123,7 @@
 
 
 import React from "react";
-import { Table_template_2 } from "./table_template_experimental.tsx";
+import { Table_template_2 } from "../table_template_experimental.tsx";
 import {
   ColumnDef,
   useReactTable,

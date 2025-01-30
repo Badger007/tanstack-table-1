@@ -11,7 +11,7 @@ import React, { useState } from "react";
 import { Table_brent_dated } from "./Table_brent_dated.tsx";
 import { Table_brent_etf } from "./Table_brent_etf.tsx";
 
-import { downloadCSV } from "../helpers/functions.tsx";
+import { downloadCSV } from "../../helpers/functions.tsx";
 
 
 // random values for the DATED table
