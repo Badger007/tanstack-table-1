@@ -23,7 +23,7 @@ import {
 
 const defaultColumn: Partial<ColumnDef<any>> = {
   cell: ({ getValue, row: { index }, column: { id }, table }) => {
-    if (id === "Current") {
+    if (id === "Adj") {
       const initialValue = getValue();
       const [value, setValue] = React.useState(initialValue);
       const onBlur = () => {
@@ -60,8 +60,8 @@ export function Table_2({ mockData, onUpdateData }) {
     () => [
       { accessorKey: "date", size: 200 },
       { accessorKey: "SoD", size: 200 },
+      { accessorKey: "Adj", size: 200 },
       { accessorKey: "Current", size: 200 },
-      { accessorKey: "Spread", size: 200 },
     ],
     []
   );

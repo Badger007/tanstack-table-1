@@ -23,7 +23,7 @@ const dummy_murban = Array.from({ length: 10 }, (_, index) => {
     spread: `Spread ${index + 1}`,
     eod,
     current,
-    change: (eod + current).toFixed(2), // Calculate change on load
+    change: (current - eod).toFixed(2), // Calculate change on load
   };
 });
 
@@ -74,7 +74,7 @@ export const Table_brent_spreads_with_button = () => {
     // Recalculate change for each row
     const updatedData = newData.map((row) => ({
       ...row,
-      change: (row.eod + row.current).toFixed(2),
+      change: (row.current - row.eod  ).toFixed(2),
     }));
     setTableData(updatedData);
   };
@@ -106,7 +106,7 @@ export const Table_brent_spreads_with_button = () => {
         updatedData[rowIndex][columnId] = parseFloat(value);
         // Recalculate change for the updated row
         updatedData[rowIndex].change = (
-          updatedData[rowIndex].current + updatedData[rowIndex].eod
+          updatedData[rowIndex].current - updatedData[rowIndex].eod
         ).toFixed(2);
         handleUpdateData(updatedData);
       },
@@ -129,7 +129,7 @@ export const Table_brent_spreads_with_button = () => {
         <div className="flex h-dvh max-w-4xl">
           <button
             className="px-8 py-2 bg-blue-500 text-white rounded"
-            onClick={() => downloadCSV(tableData)}
+            onClick={() => downloadCSV(tableData, "Brent Spreads")}
           >
             Update Values
           </button>
