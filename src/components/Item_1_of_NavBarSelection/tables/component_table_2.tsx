@@ -26,13 +26,23 @@ const defaultColumn: Partial<ColumnDef<any>> = {
     if (id === "Adj") {
       const initialValue = getValue();
       const [value, setValue] = React.useState(initialValue);
-      const onBlur = () => {
-        table.options.meta?.updateData(index, id, value);
-      };
+      // const onBlur = () => {
+      //   table.options.meta?.updateData(index, id, value);
+      // };
 
+      // const handleChange = (e) => {
+      //   const newValue = e.target.value;
+      //   setValue(newValue);
+      // };
       const handleChange = (e) => {
-        const newValue = e.target.value;
+        let newValue = e.target.value;
+        if (newValue === '') {
+          newValue = '0'; // Set to '0' if the input is empty
+        }
         setValue(newValue);
+
+        // Update the data immediately as the value changes
+        table.options.meta?.updateData(index, id, newValue);
       };
 
       React.useEffect(() => {
@@ -43,7 +53,7 @@ const defaultColumn: Partial<ColumnDef<any>> = {
         <input
           value={value}
           onChange={handleChange}
-          onBlur={onBlur}
+          // onBlur={onBlur}
           type="number"
           step="0.01"
           className="text-center"
@@ -80,7 +90,11 @@ export function Table_2({ mockData, onUpdateData }) {
     meta: {
       updateData: (rowIndex, columnId, value) => {
         const updatedData = [...mockData];
-        updatedData[rowIndex][columnId] = value;
+        updatedData[rowIndex][columnId] = parseFloat(value);
+    
+        // Recalculate the Current value as the sum of SoD and Adj
+        updatedData[rowIndex].Current = (updatedData[rowIndex].SoD + updatedData[rowIndex].Adj).toFixed(2);
+    
         onUpdateData(updatedData); // Update the parent component's state
       },
     },

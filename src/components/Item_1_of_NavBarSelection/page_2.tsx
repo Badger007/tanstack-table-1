@@ -7,33 +7,56 @@ import { Dropdown_list } from "./dropdown_filter/component_dropdown_with_table_a
 // } from "../data_input/dummy_data_1.tsx";
 
 
-const dummy_murban = Array.from({ length: 50 }, (_, index) => ({
-  date: `date ${index + 1}`,
-  SoD: (Math.random() * 100).toFixed(2),
-  Adj: (Math.random() * 100).toFixed(2),
-  Current: (Math.random() * 10).toFixed(2),
-}));
+// const dummy_murban = Array.from({ length: 50 }, (_, index) => ({
+//   date: `date ${index + 1}`,
+//   SoD: (Math.random() * 100).toFixed(2),
+//   Adj: (Math.random() * 100).toFixed(2),
+//   Current: (Math.random() * 10).toFixed(2),
+// }));
 
-const dummy_dubai = Array.from({ length: 50 }, (_, index) => ({
-  date: `date ${index + 1}`,
-  SoD: (Math.random() * 100).toFixed(2),
-  Adj: (Math.random() * 100).toFixed(2),
-  Current: (Math.random() * 10).toFixed(2),
-}));
+const dummy_murban = Array.from({ length: 50 }, (_, index) => {
+  const SoD = Number((Math.random() * 100).toFixed(2));
+  const Adj = Number((Math.random() ).toFixed(2));
+  return {
+    date: `date ${index + 1}`,
+    SoD,
+    Adj,
+    Current: (SoD + Adj).toFixed(2), // Calculate change on load
+  };
+});
 
-const dummy_wti = Array.from({ length: 50 }, (_, index) => ({
-  date: `date ${index + 1}`,
-  SoD: (Math.random() * 100).toFixed(2),
-  Adj: (Math.random() * 100).toFixed(2),
-  Current: (Math.random() * 10).toFixed(2),
-}));
+const dummy_dubai = Array.from({ length: 50 }, (_, index) => {
+  const SoD = Number((Math.random() * 100).toFixed(2));
+  const Adj = Number((Math.random() ).toFixed(2));
+  return {
+    date: `date ${index + 1}`,
+    SoD,
+    Adj,
+    Current: (SoD + Adj).toFixed(2), // Calculate change on load
+  };
+});
 
-const dummy_brent = Array.from({ length: 50 }, (_, index) => ({
-  date: `date ${index + 1}`,
-  SoD: (Math.random() * 100).toFixed(2),
-  Adj: (Math.random() * 100).toFixed(2),
-  Current: (Math.random() * 10).toFixed(2),
-}));
+const dummy_wti = Array.from({ length: 50 }, (_, index) => {
+  const SoD = Number((Math.random() * 100).toFixed(2));
+  const Adj = Number((Math.random() ).toFixed(2));
+  return {
+    date: `date ${index + 1}`,
+    SoD,
+    Adj,
+    Current: (SoD + Adj).toFixed(2), // Calculate change on load
+  };
+});
+
+const dummy_brent = Array.from({ length: 50 }, (_, index) => {
+  const SoD = Number((Math.random() * 100).toFixed(2));
+  const Adj = Number((Math.random() ).toFixed(2));
+  return {
+    date: `date ${index + 1}`,
+    SoD,
+    Adj,
+    Current: (SoD + Adj).toFixed(2), // Calculate change on load
+  };
+});
 
 
 
