@@ -253,25 +253,27 @@ export const Dropdown_list = (props) => {
             onFocus={handleReset}
             onChange={handleClick}
           />
-
+  
           <div className="flex-grow">
             <Table_2 mockData={tableData} onUpdateData={handleUpdateData} />
           </div>
         </div>
-
+  
         <div className="px-4 pt-20 items-start justify-start">
-          <button
-            className="px-8 py-2 bg-blue-500 text-white rounded"
-            onClick={() => downloadCSV(tableData)}
-          >
-            Update Values
-          </button>
-          <button
-            className="px-8 py-2 bg-red-500 text-white rounded ml-2"
-            onClick={handleReset} // Reset button
-          >
-            Reset Adj Values
-          </button>
+          <div className="flex flex-col space-y-2"> {/* Flex container with column direction */}
+            <button
+              className="px-8 py-2 bg-blue-500 text-white rounded"
+              onClick={() => downloadCSV(tableData)}
+            >
+              Update Values
+            </button>
+            <button
+              className="px-8 py-2 bg-red-500 text-white rounded"
+              onClick={handleReset} // Reset button
+            >
+              Reset Adj Values
+            </button>
+          </div>
         </div>
       </div>
     </>
