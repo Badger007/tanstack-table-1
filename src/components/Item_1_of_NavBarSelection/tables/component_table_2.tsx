@@ -102,7 +102,7 @@ export function Table_2({ mockData, onUpdateData }) {
   });
 
   return (
-    <div className="flex flex-col h-dvh max-w-4xl py-10 pl-10">
+    <div className="flex flex-col h-dvh max-w-4xl py-10 ">
       <table className="border">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (

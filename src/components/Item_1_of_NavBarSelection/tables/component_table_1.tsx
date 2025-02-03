@@ -53,7 +53,7 @@ export const Table_1 = (props) => {
   });
 
   return (
-    <div className="flex flex-col h-dvh max-w-4xl py-10 pl-10">
+    <div className="flex flex-col h-dvh max-w-4xl py-10 ">
       {/* <div className="h-2" /> */}
       <table className="border">
         <thead>
