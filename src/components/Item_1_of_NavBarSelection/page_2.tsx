@@ -6,7 +6,6 @@ import { Dropdown_list } from "./dropdown_filter/component_dropdown_with_table_a
 //   dummy_brent,
 // } from "../data_input/dummy_data_1.tsx";
 
-
 // const dummy_murban = Array.from({ length: 50 }, (_, index) => ({
 //   date: `date ${index + 1}`,
 //   SoD: (Math.random() * 100).toFixed(2),
@@ -16,7 +15,7 @@ import { Dropdown_list } from "./dropdown_filter/component_dropdown_with_table_a
 
 const dummy_murban = Array.from({ length: 50 }, (_, index) => {
   const SoD = Number((Math.random() * 100).toFixed(2));
-  const Adj = Number((Math.random() ).toFixed(2));
+  const Adj = Number(Math.random().toFixed(2));
   return {
     date: `date ${index + 1}`,
     SoD,
@@ -27,7 +26,7 @@ const dummy_murban = Array.from({ length: 50 }, (_, index) => {
 
 const dummy_dubai = Array.from({ length: 50 }, (_, index) => {
   const SoD = Number((Math.random() * 100).toFixed(2));
-  const Adj = Number((Math.random() ).toFixed(2));
+  const Adj = Number(Math.random().toFixed(2));
   return {
     date: `date ${index + 1}`,
     SoD,
@@ -38,7 +37,7 @@ const dummy_dubai = Array.from({ length: 50 }, (_, index) => {
 
 const dummy_wti = Array.from({ length: 50 }, (_, index) => {
   const SoD = Number((Math.random() * 100).toFixed(2));
-  const Adj = Number((Math.random() ).toFixed(2));
+  const Adj = Number(Math.random().toFixed(2));
   return {
     date: `date ${index + 1}`,
     SoD,
@@ -49,7 +48,7 @@ const dummy_wti = Array.from({ length: 50 }, (_, index) => {
 
 const dummy_brent = Array.from({ length: 50 }, (_, index) => {
   const SoD = Number((Math.random() * 100).toFixed(2));
-  const Adj = Number((Math.random() ).toFixed(2));
+  const Adj = Number(Math.random().toFixed(2));
   return {
     date: `date ${index + 1}`,
     SoD,
@@ -57,9 +56,6 @@ const dummy_brent = Array.from({ length: 50 }, (_, index) => {
     Current: (SoD + Adj).toFixed(2), // Calculate change on load
   };
 });
-
-
-
 
 export default function page_1_table_1() {
   return (
