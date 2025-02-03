@@ -189,7 +189,7 @@ function Table_2({ mockData, onUpdateData }) {
 /////////////////////////////
 
 
-import { useState } from "react";
+import { useState,useEffect  } from "react";
 import Select from "react-select";
 import { gradeList } from "./components/Item_1_of_NavBarSelection/dropdown_filter/data_dropdown";
 // import { Table_2 } from "../tables/component_table_2";
@@ -199,58 +199,78 @@ const default_selection = gradeList[1];
 
 export const Dropdown_list = (props) => {
   const [neededDataset, setNeededDataset] = useState(props.data[1]);
-  const [tableData, setTableData] = useState(neededDataset); 
+  const [tableData, setTableData] = useState(neededDataset);
+  const [originalData, setOriginalData] = useState(() => JSON.parse(JSON.stringify(neededDataset))); // Deep copy of the initial data
+
+  useEffect(() => {
+    setOriginalData(JSON.parse(JSON.stringify(neededDataset))); // Update original data when dataset changes
+  }, [neededDataset]);
+
+  const handleReset = () => {
+    setTableData(JSON.parse(JSON.stringify(originalData))); // Reset table data to original data
+  };
+
   function handleClick(e) {
+    // Reset the current dataset to its original state before switching
+
     let newDataset;
     switch (e.value) {
-      case "Brent":
+      case 'Brent':
         newDataset = props.data[0];
         break;
-      case "Dubai":
+      case 'Dubai':
         newDataset = props.data[1];
         break;
-      case "Murban":
+      case 'Murban':
         newDataset = props.data[2];
         break;
-      case "WTI":
+      case 'WTI':
         newDataset = props.data[3];
         break;
       default:
         newDataset = props.data[4];
-        return e.value;
+        // return e.value;
     }
+    
     setNeededDataset(newDataset);
-    setTableData(newDataset); 
+    setTableData(newDataset);
   }
 
   const handleUpdateData = (newData) => {
-    setTableData(newData); 
+    setTableData(newData);
   };
 
   return (
     <>
-      <div className=" flex ">
-        <div className=" h-screen ">
+      <div className="flex">
+        <div className="h-screen">
           <Select
             className="basic-single"
             classNamePrefix="select"
             defaultValue={default_selection}
             name="color"
             options={gradeList}
+            onFocus={handleReset}
             onChange={handleClick}
           />
 
           <div className="flex-grow">
-            <Table_2 mockData={tableData} onUpdateData={handleUpdateData} />{" "}
+            <Table_2 mockData={tableData} onUpdateData={handleUpdateData} />
           </div>
         </div>
 
-        <div className="px-4 pt-20  items-start justify-start ">
+        <div className="px-4 pt-20 items-start justify-start">
           <button
             className="px-8 py-2 bg-blue-500 text-white rounded"
-            onClick={() => downloadCSV(tableData)} 
+            onClick={() => downloadCSV(tableData)}
           >
             Update Values
+          </button>
+          <button
+            className="px-8 py-2 bg-red-500 text-white rounded ml-2"
+            onClick={handleReset} // Reset button
+          >
+            Reset Adj Values
           </button>
         </div>
       </div>
@@ -258,20 +278,12 @@ export const Dropdown_list = (props) => {
   );
 };
 
-///////////////////////////////
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <div>
-      <div>
-        <Dropdown_list
-          data={[dummy_murban, dummy_dubai, dummy_wti, dummy_brent]}
-        />
-      </div>
+      <Dropdown_list
+        data={[dummy_murban, dummy_dubai, dummy_wti, dummy_brent]}
+      />
     </div>
-
-  </React.StrictMode>,
-)
-
-
-
+  </React.StrictMode>
+);
