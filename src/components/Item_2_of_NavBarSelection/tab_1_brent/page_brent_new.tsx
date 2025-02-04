@@ -9,12 +9,6 @@ import {
   getPaginationRowModel,
 } from "@tanstack/react-table";
 
-// const dummy_murban = Array.from({ length: 10 }, (_, index) => ({
-//   spread: `Spread ${index + 1}`,
-//   eod: (Math.random() * 100).toFixed(2),
-//   current: (Math.random() * 100).toFixed(2),
-//   // change: (0).toFixed(2), // Initialize change to 0
-// }));
 
 const dummy_murban = Array.from({ length: 10 }, (_, index) => {
   const eod = Number((Math.random() * 100).toFixed(2));
@@ -65,7 +59,7 @@ const defaultColumn: Partial<ColumnDef<any>> = {
     }
   },
 };
-
+    
 
 export const Table_brent_spreads_with_button = () => {
   const [tableData, setTableData] = useState(dummy_murban);
