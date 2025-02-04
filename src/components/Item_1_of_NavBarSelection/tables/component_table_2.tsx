@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import {
   ColumnDef,
   useReactTable,
@@ -8,40 +8,21 @@ import {
   RowData,
 } from "@tanstack/react-table";
 
-// declare module "@tanstack/react-table" {
-//   interface TableMeta<TData extends RowData> {
-//     updateData: (rowIndex: number, columnId: string, value: unknown) => void;
-//   }
-// }
 
-// type Crude_Table = {
-//   date: String;
-//   SoD: number;
-//   Current: number;
-//   Spread: number;
-// };
+
 
 const defaultColumn: Partial<ColumnDef<any>> = {
   cell: ({ getValue, row: { index }, column: { id }, table }) => {
     if (id === "Adj") {
       const initialValue = getValue();
       const [value, setValue] = React.useState(initialValue);
-      // const onBlur = () => {
-      //   table.options.meta?.updateData(index, id, value);
-      // };
-
-      // const handleChange = (e) => {
-      //   const newValue = e.target.value;
-      //   setValue(newValue);
-      // };
       const handleChange = (e) => {
         let newValue = e.target.value;
         if (newValue === '') {
-          newValue = '0'; // Set to '0' if the input is empty
+          newValue = '0'; 
         }
         setValue(newValue);
 
-        // Update the data immediately as the value changes
         table.options.meta?.updateData(index, id, newValue);
       };
 
@@ -92,10 +73,9 @@ export function Table_2({ mockData, onUpdateData }) {
         const updatedData = [...mockData];
         updatedData[rowIndex][columnId] = parseFloat(value);
     
-        // Recalculate the Current value as the sum of SoD and Adj
         updatedData[rowIndex].Current = (updatedData[rowIndex].SoD + updatedData[rowIndex].Adj).toFixed(2);
     
-        onUpdateData(updatedData); // Update the parent component's state
+        onUpdateData(updatedData); 
       },
     },
     debugTable: false,
