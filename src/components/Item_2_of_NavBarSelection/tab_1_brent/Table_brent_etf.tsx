@@ -12,13 +12,15 @@ const defaultColumn: Partial<ColumnDef<any>> = {
     if (id === "current") {
       const initialValue = getValue();
       const [value, setValue] = React.useState(initialValue);
-      const onBlur = () => {
-        table.options.meta?.updateData(index, id, value);
-      };
 
       const handleChange = (e) => {
-        const newValue = e.target.value;
+        let newValue = e.target.value;
+        if (newValue === "") {
+          newValue = "0";
+        }
         setValue(newValue);
+
+        table.options.meta?.updateData(index, id, newValue);
       };
 
       React.useEffect(() => {
@@ -29,11 +31,10 @@ const defaultColumn: Partial<ColumnDef<any>> = {
         <input
           value={value}
           onChange={handleChange}
-          onBlur={onBlur}
           type="number"
           step="0.01"
           className="text-center"
-          style={{ width: '100%', textAlign: 'center' }}
+          style={{ width: "100%", textAlign: "center" }}
         />
       );
     } else {
@@ -64,20 +65,32 @@ export const Table_brent_etf = ({ tableData, onUpdateData }) => {
         pageSize: tableData.length,
       },
     },
+
     meta: {
       updateData: (rowIndex, columnId, value) => {
         const updatedData = [...tableData];
-        updatedData[rowIndex][columnId] = value;
+        updatedData[rowIndex][columnId] = parseFloat(value);
+
+        updatedData[rowIndex].change = (
+          updatedData[rowIndex].current - updatedData[rowIndex].eod
+        ).toFixed(2);
         onUpdateData(updatedData);
       },
     },
+
     debugTable: false,
   });
 
   return (
     <div>
       <div className="flex-grow">
-        <Table_template_2 mockData={tableData} onUpdateData={onUpdateData} columns={columns} table={table} table_name="ETF" />
+        <Table_template_2
+          mockData={tableData}
+          onUpdateData={onUpdateData}
+          columns={columns}
+          table={table}
+          table_name="ETF"
+        />
       </div>
     </div>
   );
