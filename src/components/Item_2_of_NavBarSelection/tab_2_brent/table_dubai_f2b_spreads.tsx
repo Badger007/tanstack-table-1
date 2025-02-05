@@ -112,7 +112,7 @@ export const Table_dubai_f2b_spreads_with_button = () => {
             onUpdateData={handleUpdateData}
             columns={columns}
             table={table}
-            table_name="Dubai EFS"
+            table_name="Dubai F2B Spreads"
           />
         </div>
         <div className="flex  h-dvh max-w-4xl  ">
