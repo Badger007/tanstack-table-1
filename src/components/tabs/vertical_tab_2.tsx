@@ -7,7 +7,7 @@ import TabPanel from "@mui/lab/TabPanel";
 
 
 import Brent_page_tables from "../Item_2_of_NavBarSelection/tab_1_brent/page_brent"
-import Dubai_page_tables from "../Item_2_of_NavBarSelection/tab_2_brent/main_page"
+import Dubai_page_tables from "../Item_2_of_NavBarSelection/tab_2_dubai/main_page"
 
 
 export default function LabTabs() {
@@ -30,7 +30,7 @@ export default function LabTabs() {
         </Box>
         <TabPanel value="1"><Brent_page_tables/></TabPanel>
         <TabPanel value="2"><Dubai_page_tables/></TabPanel>
-        <TabPanel value="3">Markets</TabPanel>
+        <TabPanel value="3">Markers</TabPanel>
         <TabPanel value="4">Vols</TabPanel>
       </TabContext>
     </Box>
